@@ -7,11 +7,16 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float movespeed = 3f;
 
-    [SerializeField] private Rigidbody2D rb;
+    private Rigidbody2D rb;
+
     [SerializeField] private Animator animator;
 
     private Vector2 movement;
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
