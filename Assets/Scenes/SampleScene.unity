@@ -1146,7 +1146,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 323589099}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1675612009}
+        m_TargetAssemblyTypeName: UIListPanel, Assembly-CSharp
+        m_MethodName: MainMenuPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &323589099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2524,7 +2536,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 800046091}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1675612009}
+        m_TargetAssemblyTypeName: UIListPanel, Assembly-CSharp
+        m_MethodName: ObjectivesPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &800046091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3362,7 +3386,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1200473070}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1675612009}
+        m_TargetAssemblyTypeName: UIListPanel, Assembly-CSharp
+        m_MethodName: InventoryPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1200473070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3572,7 +3608,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1305598546}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1675612009}
+        m_TargetAssemblyTypeName: UIListPanel, Assembly-CSharp
+        m_MethodName: SettingsPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1305598546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4870,7 +4918,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1382849089}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1675612009}
+        m_TargetAssemblyTypeName: UIListPanel, Assembly-CSharp
+        m_MethodName: ExitPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1382849089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5451,6 +5511,7 @@ GameObject:
   - component: {fileID: 1675612006}
   - component: {fileID: 1675612008}
   - component: {fileID: 1675612007}
+  - component: {fileID: 1675612009}
   m_Layer: 5
   m_Name: MainPanel
   m_TagString: Untagged
@@ -5521,6 +5582,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675612005}
   m_CullTransparentMesh: 1
+--- !u!114 &1675612009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675612005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d30d21b0c9cbedc43948f0a21509b8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryPanel: {fileID: 52982672}
+  infoPanel: {fileID: 571577767}
+  ObjectivesPanel: {fileID: 1559717853}
+  SettingsPanel: {fileID: 1935728506}
 --- !u!1 &1683435324
 GameObject:
   m_ObjectHideFlags: 0
