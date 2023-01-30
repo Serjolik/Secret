@@ -3,15 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Canvas))]
 public class PlayerInventory : MonoBehaviour
 {
-    private Canvas canvas;
-    private List<Item> items;
+    [SerializeField] private Canvas canvas;
+    private List<Item> items = new List<Item>();
 
-    private void Start()
+    private void Awake()
     {
-        canvas = GetComponent<Canvas>();
         canvas.enabled = false;
     }
     private void Update()

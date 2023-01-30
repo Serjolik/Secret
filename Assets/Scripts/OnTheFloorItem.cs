@@ -25,12 +25,12 @@ public class OnTheFloorItem : MonoBehaviour
     [SerializeField] private int numbersOfItems = 1;
 
     private Sprite sprite;
-
+    private PlayerInventory playerInventory;
+    private bool inCollision = false;
 
     private void Awake()
     {
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-
         sprite = GetComponent<SpriteRenderer>().sprite;
         if (!manualSetting)
         {
@@ -40,25 +40,42 @@ public class OnTheFloorItem : MonoBehaviour
         
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
+        {
+            playerInventory = collision.GetComponent<PlayerInventory>();
+            inCollision = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            inCollision = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (inCollision)
         {
             DrawMessage();
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Pickup(collision);
+                Pickup();
             }
         }
     }
 
     private void DrawMessage()
     {
+        Debug.Log("IM HERE");
         return;
     }
-    private void Pickup(Collider2D collision)
+    private void Pickup()
     {
-        PlayerInventory playerInventory = collision.GetComponent<PlayerInventory>();
         playerInventory.AddItem(itemName, numbersOfItems, sprite);
         Destroy(gameObject);
     }
