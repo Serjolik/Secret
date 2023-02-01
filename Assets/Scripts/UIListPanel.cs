@@ -5,29 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class UIListPanel : MonoBehaviour
 {
-    [SerializeField] private GameObject inventoryPanel;
-    [SerializeField] private GameObject infoPanel;
+    [SerializeField] private GameObject ListPanel;
+    [SerializeField] private GameObject InventoryPanel;
+    [SerializeField] private GameObject InfoPanel;
     [SerializeField] private GameObject ObjectivesPanel;
     [SerializeField] private GameObject SettingsPanel;
 
-    private bool inOtherMenu = false;
+    private bool inMenu = false;
+    private bool inOtherPanel = false;
 
     public void InventoryPressed()
     {
-        inventoryPanel.SetActive(true);
-        inOtherMenu = true;
+        InventoryPanel.SetActive(true);
+        inOtherPanel = true;
     }
 
     public void ObjectivesPressed()
     {
         ObjectivesPanel.SetActive(true);
-        inOtherMenu = true;
+        inOtherPanel = true;
     }
 
     public void SettingsPressed()
     {
         SettingsPanel.SetActive(true);
-        inOtherMenu = true;
+        inOtherPanel = true;
     }
 
     public void MainMenuPressed()
@@ -42,34 +44,49 @@ public class UIListPanel : MonoBehaviour
 
     private void Update()
     {
-        if (inOtherMenu)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (!inMenu)
             {
-                inOtherMenu = false;
-                AllPanelsState(false);
+                MenuOpen();
+                return;
             }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
+
+            if (!inOtherPanel)
             {
-                Close();
+                MenuClose();
+            }
+
+            else
+            {
+                inOtherPanel = false;
+                AllPanelsState(false);
             }
         }
     }
 
-    private void Close()
+    private void MenuOpen()
     {
-        this.gameObject.SetActive(false);
+        Time.timeScale = 0f; // temporally
+
+        ListPanel.SetActive(true);
+        inMenu = true;
+    }
+
+    private void MenuClose()
+    {
+        Time.timeScale = 1.0f; // temporally
+
+        ListPanel.SetActive(false);
+        inMenu = false;
     }
 
     private void AllPanelsState(bool state)
     {
         if (state == false)
         {
-            inventoryPanel.SetActive(false);
-            infoPanel.SetActive(false);
+            InventoryPanel.SetActive(false);
+            InfoPanel.SetActive(false);
             ObjectivesPanel.SetActive(false);
             SettingsPanel.SetActive(false);
         }
