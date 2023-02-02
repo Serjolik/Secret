@@ -40,9 +40,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void AddItem(string itemName, int numbersOfItems, Sprite sprite)
+    public void AddItem(IPickupable pickupableObject)
     {
-        playerInventory.AddItem(itemName, numbersOfItems, sprite);
+        (string iname, int inumber, Sprite isprite)
+            = pickupableObject.GetValues();
+
+        Debug.Log("ADD ITEM");
+        Debug.Log($"iname = {iname}");
+
+        playerInventory.AddItem(iname, inumber, isprite);
     }
 
     private void EndGame()

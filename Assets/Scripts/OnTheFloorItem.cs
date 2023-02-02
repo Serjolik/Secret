@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
@@ -8,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// the script is responsible for the added item to player
 /// </summary>
-public class OnTheFloorItem : MonoBehaviour
+public class OnTheFloorItem : ObjectTrigger, IPickupable
 {
     /// <summary>
     /// If you want set your settings
@@ -24,14 +22,14 @@ public class OnTheFloorItem : MonoBehaviour
     /// </summary>
     [SerializeField] private int numbersOfItems = 1;
 
-    private Sprite sprite;
+    public Sprite sprite { get; private set; }
     private Player player;
-    private bool inCollision = false;
 
     private void Awake()
     {
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         sprite = GetComponent<SpriteRenderer>().sprite;
+
         if (!manualSetting)
         {
             numbersOfItems = 1;
@@ -40,44 +38,32 @@ public class OnTheFloorItem : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public (string, int, Sprite) GetValues()
     {
-        if (collision.tag == "Player")
-        {
-            player = collision.GetComponentInParent<Player>();
-            inCollision = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            inCollision = false;
-        }
+        (string, int, Sprite) tuple = (itemName, numbersOfItems, sprite);
+        return tuple;
     }
 
     private void Update()
     {
-        if (inCollision)
+        if (playerCollision)
         {
-            DrawMessage();
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Pickup();
+                Destroy(gameObject);
             }
         }
     }
 
-    private void DrawMessage()
+    protected override void TriggerPlayerAction(Collider2D collision)
     {
-        Debug.Log("IM HERE");
-        return;
+        player = collision.GetComponentInParent<Player>();
     }
-    private void Pickup()
+
+    public void Pickup()
     {
-        player.AddItem(itemName, numbersOfItems, sprite);
-        Destroy(gameObject);
+        player.AddItem(this);
     }
 
 }
