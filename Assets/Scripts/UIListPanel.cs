@@ -14,6 +14,12 @@ public class UIListPanel : MonoBehaviour
     private bool inMenu = false;
     private bool inOtherPanel = false;
 
+    private void Awake()
+    {
+        MenuClose();
+        AllPanelsState(false);
+    }
+
     public void InventoryPressed()
     {
         InventoryPanel.SetActive(true);
@@ -67,16 +73,12 @@ public class UIListPanel : MonoBehaviour
 
     private void MenuOpen()
     {
-        Time.timeScale = 0f; // temporally
-
         ListPanel.SetActive(true);
         inMenu = true;
     }
 
     private void MenuClose()
     {
-        Time.timeScale = 1.0f; // temporally
-
         ListPanel.SetActive(false);
         inMenu = false;
     }

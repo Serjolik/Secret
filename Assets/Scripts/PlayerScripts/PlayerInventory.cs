@@ -1,24 +1,21 @@
 using Ink.Parsed;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerInventory : MonoBehaviour
+public class PlayerInventory : ScriptableObject
 {
-    [SerializeField] private Canvas canvas;
     private List<Item> items = new List<Item>();
 
-    private void Awake()
+    private static PlayerInventory instance;
+    public static PlayerInventory getInstance()
     {
-        canvas.enabled = false;
+        if (instance == null)
+            instance = CreateInstance<PlayerInventory>();
+        return instance;
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            canvas.enabled = !canvas.enabled;
-        }
-    }
+
 
     public void AddItem(string name, int number, Sprite sprite)
     {
@@ -42,12 +39,12 @@ public class PlayerInventory : MonoBehaviour
                 if (item.totalItems > 1)
                 {
                     item.TotalItemsChange(-1);
-                    return;
+                    break;
                 }
                 else
                 {
                     items.Remove(item);
-                    return;
+                    break;
                 }
             }
         }

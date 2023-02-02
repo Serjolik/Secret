@@ -25,7 +25,7 @@ public class OnTheFloorItem : MonoBehaviour
     [SerializeField] private int numbersOfItems = 1;
 
     private Sprite sprite;
-    private PlayerInventory playerInventory;
+    private Player player;
     private bool inCollision = false;
 
     private void Awake()
@@ -44,7 +44,7 @@ public class OnTheFloorItem : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            playerInventory = collision.GetComponent<PlayerInventory>();
+            player = collision.GetComponentInParent<Player>();
             inCollision = true;
         }
     }
@@ -76,7 +76,7 @@ public class OnTheFloorItem : MonoBehaviour
     }
     private void Pickup()
     {
-        playerInventory.AddItem(itemName, numbersOfItems, sprite);
+        player.AddItem(itemName, numbersOfItems, sprite);
         Destroy(gameObject);
     }
 

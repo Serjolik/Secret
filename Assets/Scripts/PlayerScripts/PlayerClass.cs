@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerClass
 {
-    public float name { get; private set; }
+    public string name { get; private set; }
     public float health { get; private set; }
     public float speed { get; private set; }
 
     private List<string> inventory;
 
-    public PlayerClass(float name, float health, float speed)
+    public PlayerClass(string name, float health, float speed)
     {
         this.name = name; this.health = health; this.speed = speed;
         inventory = new List<string>();
