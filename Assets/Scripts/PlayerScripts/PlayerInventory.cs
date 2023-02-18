@@ -1,25 +1,23 @@
-using Ink.Parsed;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerInventory : ScriptableObject
+public class PlayerInventory
 {
-    private List<Item> items = new List<Item>();
+    private List<Item> inventory;
 
-    private static PlayerInventory instance;
-    public static PlayerInventory getInstance()
+    public PlayerInventory()
     {
-        if (instance == null)
-            instance = CreateInstance<PlayerInventory>();
-        return instance;
+        inventory = new List<Item>();
     }
 
+    public void AddItem(Item item)
+    {
+        inventory.Add(item);
+    }
 
     public void AddItem(string name, int number, Sprite sprite)
-    {
-        foreach (var item in items)
+    { // if we don't have an instance of the item
+        foreach (var item in inventory)
         {
             if (item.itemName == name)
             {
@@ -27,12 +25,12 @@ public class PlayerInventory : ScriptableObject
                 return;
             }
         }
-        items.Add(new Item(name, number, sprite));
+        inventory.Add(new Item(name, number, sprite));
     }
 
     public void RemoveItem(string name)
     {
-        foreach (var item in items)
+        foreach (var item in inventory)
         {
             if (item.itemName == name)
             {
@@ -43,7 +41,7 @@ public class PlayerInventory : ScriptableObject
                 }
                 else
                 {
-                    items.Remove(item);
+                    inventory.Remove(item);
                     break;
                 }
             }
@@ -52,7 +50,7 @@ public class PlayerInventory : ScriptableObject
 
     public bool SearchItem(string name)
     {
-        foreach (var item in items)
+        foreach (var item in inventory)
         {
             if(item.itemName == name)
             {

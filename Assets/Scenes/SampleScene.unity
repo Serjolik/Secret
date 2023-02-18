@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 119816217}
   - component: {fileID: 119816220}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerBody
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -738,6 +738,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 191922334}
+  - component: {fileID: 191922335}
   m_Layer: 0
   m_Name: CameraController
   m_TagString: Untagged
@@ -762,6 +763,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &191922335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191922333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a90c27d78d68eb47b7e510bb8b841fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myShakeTime: 1
+  myIntensivity: 1
 --- !u!1 &229833147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,7 +1505,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 2.6999998
+  orthographic size: 2.65
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2372,7 +2387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a56e77fa3377a0e4b92df7f93aaabf12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manualSetting: 0
   itemName: name
   numbersOfItems: 1
 --- !u!212 &761606834
@@ -2456,7 +2470,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -5754,10 +5768,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f862950520e73554885dd92d975fce5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endGameEvent: {fileID: 11400000, guid: 233ae98ba98452c4180203139ab379d2, type: 2}
-  playerName: Test name
+  playerName: Player
   health: 100
-  speed: 10
+  endGameEvent: {fileID: 11400000, guid: 233ae98ba98452c4180203139ab379d2, type: 2}
 --- !u!1 &1881585463
 GameObject:
   m_ObjectHideFlags: 0

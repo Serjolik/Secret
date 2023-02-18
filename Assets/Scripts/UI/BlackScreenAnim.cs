@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class BlackScreenAnim : MonoBehaviour
 {
     [SerializeField] private float animationTime = 2f;
-    private bool inCutscene = false;
+
     private Image ObjectImage;
     private Color fullColor;
     private Color transparentColor;
@@ -25,16 +25,6 @@ public class BlackScreenAnim : MonoBehaviour
         Debug.Log("Black screen");
     }
 
-    public float giveAnimationTime()
-    {
-        return animationTime;
-    }
-
-    public bool giveInCutsceneState()
-    {
-        return inCutscene;
-    }
-
     private IEnumerator anim(float animationPauseTime)
     {
         float time = 0;
@@ -46,9 +36,9 @@ public class BlackScreenAnim : MonoBehaviour
             ObjectImage.color = Color.Lerp(transparentColor, fullColor, step * time);
             yield return null;
         }
-        inCutscene = true;
+
         yield return new WaitForSeconds(animationPauseTime);
-        inCutscene = false;
+
         time = 0;
         while (time < animationTime)
         {
@@ -57,4 +47,5 @@ public class BlackScreenAnim : MonoBehaviour
             yield return null;
         }
     }
+
 }

@@ -9,6 +9,7 @@ public class UIBaseFill : MonoBehaviour
     [SerializeField] private string barName = "name";
 
     private float fill = 1f;
+
     protected virtual void FillBar(float param, float maxParam)
     {
         fill = param / maxParam;

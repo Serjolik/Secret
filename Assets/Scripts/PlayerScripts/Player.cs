@@ -6,21 +6,23 @@ using UnityEngine.U2D;
 
 public class Player : MonoBehaviour
 {
-    public GameEvent endGameEvent;
-    private bool playerActive;
-    private PlayerClass player;
-    private PlayerInventory playerInventory;
     [Header("Player start stats")]
     [SerializeField] private string playerName = "Test name";
     [SerializeField] private float health = 100f;
-    [SerializeField] private float speed = 10f;
+
+    [Header("End game event")]
+    public GameEvent endGameEvent;
+
+    private bool playerActive;
+    private PlayerClass player;
+    private PlayerInventory playerInventory;
 
 
     private void Start()
     {
         playerActive = true;
-        player = new PlayerClass(playerName, health, speed);
-        playerInventory = PlayerInventory.getInstance();
+        player = new PlayerClass(playerName, health);
+        playerInventory = new PlayerInventory();
     }
 
     private void Update()
@@ -36,23 +38,18 @@ public class Player : MonoBehaviour
         player.DamageDealt(damage);
         if (player.health <= 0)
         {
-            endGameEvent.TriggerEvent();
+            EndGame();
         }
     }
 
-    public void AddItem(IPickupable pickupableObject)
+    public void AddItem(Item item)
     {
-        (string iname, int inumber, Sprite isprite)
-            = pickupableObject.GetValues();
-
-        Debug.Log("ADD ITEM");
-        Debug.Log($"iname = {iname}");
-
-        playerInventory.AddItem(iname, inumber, isprite);
+        playerInventory.AddItem(item);
     }
 
     private void EndGame()
     {
         playerActive = false;
+        endGameEvent.TriggerEvent();
     }
 }

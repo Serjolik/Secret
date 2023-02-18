@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public interface IEnemy
 {
-    public void TakingDamage(float amount);
+    public void TakeDamage(float amount);
+    public void DealDamage();
 }

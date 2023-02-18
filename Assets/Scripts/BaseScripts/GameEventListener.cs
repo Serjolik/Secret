@@ -4,6 +4,7 @@ public class GameEventListener : MonoBehaviour
 {
     public GameEvent gameEvent;
     public UnityEvent onEventTriggered;
+
     void OnEnable()
     {
         gameEvent.AddListener(this);

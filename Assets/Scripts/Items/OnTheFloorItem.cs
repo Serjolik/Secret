@@ -6,13 +6,8 @@ using UnityEngine;
 /// <summary>
 /// the script is responsible for the added item to player
 /// </summary>
-public class OnTheFloorItem : ObjectTrigger, IPickupable
+public class OnTheFloorItem : MonoBehaviour, IPickupable
 {
-    /// <summary>
-    /// If you want set your settings
-    /// </summary>
-    [SerializeField] private bool manualSetting = false;
-    [Header("IF MANUAL SETTING ON")]
     /// <summary>
     /// the name of an object is responsible for its properties
     /// </summary>
@@ -22,31 +17,29 @@ public class OnTheFloorItem : ObjectTrigger, IPickupable
     /// </summary>
     [SerializeField] private int numbersOfItems = 1;
 
-    public Sprite sprite { get; private set; }
+    private Sprite sprite;
     private Player player;
+
+    private Item thisItem;
+
+    private bool inPlayerRange;
 
     private void Awake()
     {
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         sprite = GetComponent<SpriteRenderer>().sprite;
-
-        if (!manualSetting)
-        {
-            numbersOfItems = 1;
-            itemName = name;
-        }
+        thisItem = new Item(itemName, numbersOfItems, sprite);
         
     }
 
-    public (string, int, Sprite) GetValues()
+    public void Pickup()
     {
-        (string, int, Sprite) tuple = (itemName, numbersOfItems, sprite);
-        return tuple;
+        player.AddItem(thisItem);
     }
 
     private void Update()
     {
-        if (playerCollision)
+        if (inPlayerRange)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -56,14 +49,28 @@ public class OnTheFloorItem : ObjectTrigger, IPickupable
         }
     }
 
-    protected override void TriggerPlayerAction(Collider2D collision)
+
+    // Triggering zone
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag != "Player")
+        {
+            return;
+        }
+
         player = collision.GetComponentInParent<Player>();
+        inPlayerRange = true;
     }
 
-    public void Pickup()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        player.AddItem(this);
+        if (collision.tag != "Player")
+        {
+            return;
+        }
+
+        inPlayerRange = false;
     }
 
 }
