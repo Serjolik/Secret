@@ -40,6 +40,7 @@ public class BlackScreenAnim : MonoBehaviour
         yield return new WaitForSeconds(animationPauseTime);
 
         time = 0;
+
         while (time < animationTime)
         {
             time += Time.deltaTime;

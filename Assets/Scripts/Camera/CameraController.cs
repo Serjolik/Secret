@@ -16,6 +16,8 @@ public class CameraController : MonoBehaviour
 
     private CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin;
 
+    public bool shake;
+
     private void Awake()
     {
         Instance = this;
@@ -39,6 +41,12 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
+        if (shake)
+        {
+            shake = false;
+            ShakeCamera();
+        }
+
         if (shakeTimer <= 0)
         {
             return;

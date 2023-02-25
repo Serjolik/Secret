@@ -16,7 +16,7 @@ public class PlayerInventory
     }
 
     public void AddItem(string name, int number, Sprite sprite)
-    { // if we don't have an instance of the item
+    {   // if we don't have an instance of the item
         foreach (var item in inventory)
         {
             if (item.itemName == name)

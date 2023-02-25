@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movement;
 
+    public bool CanMove;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -33,6 +35,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!CanMove)
+        {
+            return;
+        }
+
         rb.MovePosition(rb.position + movement * movespeed * Time.fixedDeltaTime);
     }
 }

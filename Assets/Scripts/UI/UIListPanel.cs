@@ -11,29 +11,36 @@ public class UIListPanel : MonoBehaviour
     [SerializeField] private GameObject ObjectivesPanel;
     [SerializeField] private GameObject SettingsPanel;
 
+    private PlayerMovement playerMovement;
+
     private bool inMenu = false;
     private bool inOtherPanel = false;
 
     private void Awake()
     {
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+
         MenuClose();
         AllPanelsState(false);
     }
 
     public void InventoryPressed()
     {
+        AllPanelsState(false);
         InventoryPanel.SetActive(true);
         inOtherPanel = true;
     }
 
     public void ObjectivesPressed()
     {
+        AllPanelsState(false);
         ObjectivesPanel.SetActive(true);
         inOtherPanel = true;
     }
 
     public void SettingsPressed()
     {
+        AllPanelsState(false);
         SettingsPanel.SetActive(true);
         inOtherPanel = true;
     }
@@ -73,12 +80,14 @@ public class UIListPanel : MonoBehaviour
 
     private void MenuOpen()
     {
+        playerMovement.CanMove = false;
         ListPanel.SetActive(true);
         inMenu = true;
     }
 
     private void MenuClose()
     {
+        playerMovement.CanMove = true;
         ListPanel.SetActive(false);
         inMenu = false;
     }
