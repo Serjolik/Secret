@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movement;
 
-    public bool CanMove;
+    private bool CanMove;
 
     private void Awake()
     {
@@ -41,5 +41,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.MovePosition(rb.position + movement * movespeed * Time.fixedDeltaTime);
+    }
+
+    public void CanMoveChanging(bool state)
+    {
+        CanMove = state;
     }
 }

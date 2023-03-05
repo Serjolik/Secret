@@ -5,21 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class UIListPanel : MonoBehaviour
 {
+    [Header("Panels")]
     [SerializeField] private GameObject ListPanel;
     [SerializeField] private GameObject InventoryPanel;
     [SerializeField] private GameObject InfoPanel;
     [SerializeField] private GameObject ObjectivesPanel;
     [SerializeField] private GameObject SettingsPanel;
 
-    private PlayerMovement playerMovement;
-
     private bool inMenu = false;
     private bool inOtherPanel = false;
 
-    private void Awake()
-    {
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+    [Header("Events")]
+    public GameEvent PauseEvent;
+    public GameEvent PlayEvent;
 
+    private void Start()
+    {
         MenuClose();
         AllPanelsState(false);
     }
@@ -57,6 +58,11 @@ public class UIListPanel : MonoBehaviour
 
     private void Update()
     {
+        if (!Input.anyKeyDown)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!inMenu)
@@ -76,18 +82,28 @@ public class UIListPanel : MonoBehaviour
                 AllPanelsState(false);
             }
         }
+        else if (Input.GetKeyDown(KeyCode.I))
+        {
+            InventoryOpen();
+        }
+        else if (Input.GetKeyDown(KeyCode.O))
+        {
+            ObjectivesOpen();
+        }
+        
     }
 
     private void MenuOpen()
     {
-        playerMovement.CanMove = false;
+
+        PauseEvent.TriggerEvent();
         ListPanel.SetActive(true);
         inMenu = true;
     }
 
     private void MenuClose()
     {
-        playerMovement.CanMove = true;
+        PlayEvent.TriggerEvent();
         ListPanel.SetActive(false);
         inMenu = false;
     }
@@ -102,6 +118,20 @@ public class UIListPanel : MonoBehaviour
             SettingsPanel.SetActive(false);
         }
 
+    }
+
+    private void InventoryOpen()
+    {
+        if (!inMenu)
+            MenuOpen();
+        InventoryPressed();
+    }
+
+    private void ObjectivesOpen()
+    {
+        if (!inMenu)
+            MenuOpen();
+        ObjectivesPressed();
     }
 
 }

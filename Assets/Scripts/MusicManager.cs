@@ -4,43 +4,35 @@ using UnityEngine;
 
 public class MusicManager : Singleton<MusicManager>
 {
-    // Задержка между треками
+    // tracks delay
     public int newTrackDelay = 0;
-    // Список треков
+    // souds clips
     public List<AudioClip> musicAudioClips = new List<AudioClip>();
 
-    // Источник для проигрывания музыки
     private AudioSource _musicAudioSource = null;
 
-    // Используется для отслеживания заглушения музыки
     private int _muted = 0;
 
     protected override void Awake()
     {
-        // Настраиваем синглетон
+        // base singleton class awake
         base.Awake();
 
-        DontDestroyOnLoad(gameObject);
-
-        // Добавляем компонент для проигрывания музыки
         _musicAudioSource = gameObject.AddComponent<AudioSource>();
     }
     void Start()
     {
-        // Запускаем проигрывание музыки
+        // music play
         StartCoroutine(PlayBackgroudMusic());
     }
 
-    // Заглушаем музыку
     public void Mute()
-    {
-        // Проверки для синглетона
+    {   // muting misuc
         if (ReferenceEquals(Instance, null))
         {
             return;
         }
 
-        // Если звук не заглушён
         if (Instance._muted == 0)
         {
             Instance._musicAudioSource.mute = true;
@@ -48,7 +40,6 @@ public class MusicManager : Singleton<MusicManager>
         Instance._muted++;
     }
 
-    // Возврат звука
     public void TurnOn()
     {
         // Проверка на синглетон и запрет на отрицательный счётчик
@@ -66,12 +57,10 @@ public class MusicManager : Singleton<MusicManager>
 
     }
 
-    // Запуск следующего трека
     IEnumerator PlayBackgroudMusic()
     {
-        // Текущий индекс трека
         int musicIndex = 0;
-        // Проигрываем музыку, если она есть
+
         while (musicAudioClips.Count > 0)
         {
             // Время для запуска следующего трека + задержка
