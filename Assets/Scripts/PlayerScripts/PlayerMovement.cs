@@ -26,11 +26,15 @@ public class PlayerMovement : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
 
-        /* WHEN ANIMATOR ADDED
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
-        */
+
+        if (movement.x != 0 || movement.y != 0)
+        {
+            animator.SetFloat("IdleHorizontal", movement.x);
+            animator.SetFloat("IdleVertical", movement.y);
+        }
     }
 
     private void FixedUpdate()

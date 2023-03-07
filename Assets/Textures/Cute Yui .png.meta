@@ -110,10 +110,10 @@ TextureImporter:
       name: Cute Yui _0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 200
+        x: 2
+        y: 198
         width: 32
-        height: 66
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,10 +131,10 @@ TextureImporter:
       name: Cute Yui _1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 200
+        x: 34
+        y: 198
         width: 32
-        height: 66
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,10 +152,10 @@ TextureImporter:
       name: Cute Yui _2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 200
+        x: 66
+        y: 198
         width: 32
-        height: 66
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,10 +173,10 @@ TextureImporter:
       name: Cute Yui _3
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 134
         width: 32
-        height: 66
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: Cute Yui _4
       rect:
         serializedVersion: 2
-        x: 32
+        x: 34
         y: 134
         width: 32
-        height: 66
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: Cute Yui _5
       rect:
         serializedVersion: 2
-        x: 64
+        x: 66
         y: 134
         width: 32
-        height: 66
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,10 +236,10 @@ TextureImporter:
       name: Cute Yui _6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 68
+        x: 2
+        y: 70
         width: 32
-        height: 66
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,10 +257,10 @@ TextureImporter:
       name: Cute Yui _7
       rect:
         serializedVersion: 2
-        x: 32
-        y: 68
+        x: 34
+        y: 70
         width: 32
-        height: 66
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +278,10 @@ TextureImporter:
       name: Cute Yui _8
       rect:
         serializedVersion: 2
-        x: 64
-        y: 68
+        x: 66
+        y: 70
         width: 32
-        height: 66
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,10 +299,10 @@ TextureImporter:
       name: Cute Yui _9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2
+        x: 2
+        y: 6
         width: 32
-        height: 66
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -310,7 +310,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d07497cd01fce448bfd59811ea4a0d6
+      spriteID: 6ba08ac03041536409630403f8da6550
       internalID: -261360122
       vertices: []
       indices: 
@@ -320,10 +320,10 @@ TextureImporter:
       name: Cute Yui _10
       rect:
         serializedVersion: 2
-        x: 32
-        y: 2
+        x: 34
+        y: 6
         width: 32
-        height: 66
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,7 +331,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e647382a09023342ba8629a303df768
+      spriteID: 4b3978072842aa743bff7b80b7eba39e
       internalID: -1735742573
       vertices: []
       indices: 
@@ -341,10 +341,10 @@ TextureImporter:
       name: Cute Yui _11
       rect:
         serializedVersion: 2
-        x: 64
-        y: 2
+        x: 66
+        y: 6
         width: 32
-        height: 66
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -352,7 +352,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d6babe8946250b4ca0d530a493df5f7
+      spriteID: a0e7798effc63ff4ca17a923b14199f1
       internalID: -1563559339
       vertices: []
       indices: 

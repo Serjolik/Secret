@@ -579,6 +579,7 @@ GameObject:
   - component: {fileID: 119816218}
   - component: {fileID: 119816217}
   - component: {fileID: 119816220}
+  - component: {fileID: 119816221}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Player
@@ -632,7 +633,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.64, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -666,7 +667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movespeed: 2
-  animator: {fileID: 0}
+  animator: {fileID: 119816221}
 --- !u!50 &119816218
 Rigidbody2D:
   serializedVersion: 4
@@ -729,6 +730,26 @@ CapsuleCollider2D:
   m_Offset: {x: 0.03, y: -0.37}
   m_Size: {x: 0.55, y: 0.81}
   m_Direction: 0
+--- !u!95 &119816221
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119816214}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b47027eae45506a44af1cd093b4f76c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &185401477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,7 +1673,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 2.79
+  orthographic size: 2.87
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -6071,9 +6092,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newTrackDelay: 5
   musicAudioClips:
-  - {fileID: 8300000, guid: 6b08ccefe2c8c5e4fb69ec0c3d5d92df, type: 3}
-  - {fileID: 8300000, guid: 70b11bf620ea41043a07888402a26e6a, type: 3}
   - {fileID: 8300000, guid: 8310c03f02828444fbb6c9371417d7a5, type: 3}
+  - {fileID: 8300000, guid: 70b11bf620ea41043a07888402a26e6a, type: 3}
+  - {fileID: 8300000, guid: 6b08ccefe2c8c5e4fb69ec0c3d5d92df, type: 3}
 --- !u!1 &1559717853
 GameObject:
   m_ObjectHideFlags: 0
