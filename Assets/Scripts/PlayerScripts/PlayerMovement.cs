@@ -8,8 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float movespeed = 3f;
 
     private Rigidbody2D rb;
-
-    [SerializeField] private Animator animator;
+    private Animator animator;
 
     private Vector2 movement;
 
@@ -18,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()

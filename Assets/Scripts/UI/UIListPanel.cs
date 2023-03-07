@@ -21,8 +21,7 @@ public class UIListPanel : MonoBehaviour
 
     private void Start()
     {
-        MenuClose();
-        AllPanelsState(false);
+        PanelsStartLoad();
     }
 
     public void InventoryPressed()
@@ -117,6 +116,13 @@ public class UIListPanel : MonoBehaviour
             ObjectivesPanel.SetActive(false);
             SettingsPanel.SetActive(false);
         }
+        else
+        {
+            InventoryPanel.SetActive(true);
+            InfoPanel.SetActive(true);
+            ObjectivesPanel.SetActive(true);
+            SettingsPanel.SetActive(true);
+        }
 
     }
 
@@ -132,6 +138,14 @@ public class UIListPanel : MonoBehaviour
         if (!inMenu)
             MenuOpen();
         ObjectivesPressed();
+    }
+
+    private void PanelsStartLoad()
+    {
+        MenuOpen();
+        AllPanelsState(true);
+        AllPanelsState(false);
+        MenuClose();
     }
 
 }
