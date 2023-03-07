@@ -11,15 +11,18 @@ public class UIInventory : MonoBehaviour
     private void Awake()
     {
         itemSlotsImages = gameObject.GetComponentsInChildren<Image>().ToList();
+        for (int i = 0; i < itemSlotsImages.Count - 1; i++)
+        {
+            itemSlotsImages[i] = itemSlotsImages[i + 1];
+        }
+        itemSlotsImages.RemoveAt(itemSlotsImages.Count - 1);
     }
 
     public void UpdateImages(List<Sprite> sprites)
     {
-        int index = 0;
-        foreach (Image image in itemSlotsImages)
+        for (int i = 0; i < sprites.Count; i++)
         {
-            image.sprite = sprites[index];
-            index++;
+            itemSlotsImages[i].sprite = sprites[i];
         }
     }
 

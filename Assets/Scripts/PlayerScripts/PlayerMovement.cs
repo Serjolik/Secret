@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
+        // Remembering the last direction for the id sprite of the character
         if (movement.x != 0 || movement.y != 0)
         {
             animator.SetFloat("IdleHorizontal", movement.x);

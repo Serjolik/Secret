@@ -4,15 +4,19 @@ using UnityEngine;
 public class PlayerInventory
 {
     private List<Item> inventory;
+    private UIInventory UI;
 
-    public PlayerInventory()
+    public PlayerInventory(UIInventory ui)
     {
         inventory = new List<Item>();
+        UI = ui;
     }
 
     public void AddItem(Item item)
     {
         inventory.Add(item);
+        UI.UpdateImages(itemSprites());
+
     }
 
     public void AddItem(string name, int number, Sprite sprite)
@@ -58,6 +62,17 @@ public class PlayerInventory
             }
         }
         return false;
+    }
+
+    private List<Sprite> itemSprites()
+    {
+        var list = new List<Sprite>();
+        foreach (Item item in inventory)
+        {
+            list.Add(item.sprite);
+        }
+
+        return list;
     }
 
 }

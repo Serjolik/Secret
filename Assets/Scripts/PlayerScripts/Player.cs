@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
     [Header("End game event")]
     public GameEvent endGameEvent;
 
+    [Header("Inventory window")]
+    [SerializeField] private UIInventory InventoryUI;
+
     private bool playerActive;
     private PlayerClass player;
     private PlayerInventory playerInventory;
@@ -22,7 +25,7 @@ public class Player : MonoBehaviour
     {
         playerActive = true;
         player = new PlayerClass(playerName, health);
-        playerInventory = new PlayerInventory();
+        playerInventory = new PlayerInventory(InventoryUI);
     }
 
     private void Update()
