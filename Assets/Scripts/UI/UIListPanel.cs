@@ -47,7 +47,7 @@ public class UIListPanel : MonoBehaviour
 
     public void MainMenuPressed()
     {
-        return;
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ExitPressed()

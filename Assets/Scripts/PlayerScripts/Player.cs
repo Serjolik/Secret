@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     [Header("Inventory window")]
     [SerializeField] private UIInventory InventoryUI;
+    [SerializeField] private UIItemInfo ItemUI;
 
     private bool playerActive;
     private PlayerClass player;
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
     {
         playerActive = true;
         player = new PlayerClass(playerName, health);
-        playerInventory = new PlayerInventory(InventoryUI);
+        playerInventory = new PlayerInventory(InventoryUI, ItemUI);
     }
 
     private void Update()

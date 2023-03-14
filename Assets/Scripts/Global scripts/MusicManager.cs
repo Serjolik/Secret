@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class MusicManager : Singleton<MusicManager>
 {
-    // tracks delay
-    public int newTrackDelay = 0;
-    // souds clips
+    [Header("Params")]
+    [SerializeField] private int newTrackDelay = 0;
+
+    [Header("Background Musics")]
     public List<AudioClip> musicAudioClips = new List<AudioClip>();
 
-    private AudioSource _musicAudioSource = null;
+    private AudioSource _musicAudioSource;
 
     private int _muted = 0;
 
@@ -18,7 +19,7 @@ public class MusicManager : Singleton<MusicManager>
         // base singleton class awake
         base.Awake();
 
-        _musicAudioSource = gameObject.AddComponent<AudioSource>();
+        _musicAudioSource = gameObject.GetComponentInParent<AudioSource>();
     }
     void Start()
     {
@@ -27,7 +28,7 @@ public class MusicManager : Singleton<MusicManager>
     }
 
     public void Mute()
-    {   // muting misuc
+    {
         if (ReferenceEquals(Instance, null))
         {
             return;
@@ -42,13 +43,11 @@ public class MusicManager : Singleton<MusicManager>
 
     public void TurnOn()
     {
-        // Проверка на синглетон и запрет на отрицательный счётчик
         if (ReferenceEquals(Instance, null) || Instance._muted == 0)
         {
             return;
         }
 
-        // Включаем звук
         Instance._muted--;
         if (Instance._muted == 0)
         {
