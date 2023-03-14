@@ -13,6 +13,10 @@ public class OnTheFloorItem : MonoBehaviour, IPickupable
     /// </summary>
     [SerializeField] private string itemName = "name";
     /// <summary>
+    /// Text about this item
+    /// </summary>
+    [SerializeField] private string itemText;
+    /// <summary>
     /// parameter is responsible for the number of items in the stack
     /// </summary>
     [SerializeField] private int numbersOfItems = 1;
@@ -28,7 +32,7 @@ public class OnTheFloorItem : MonoBehaviour, IPickupable
     {
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         sprite = GetComponent<SpriteRenderer>().sprite;
-        thisItem = new Item(itemName, numbersOfItems, sprite);
+        thisItem = new Item(itemName, itemText, numbersOfItems, sprite);
         
     }
 

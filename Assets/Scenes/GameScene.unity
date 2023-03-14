@@ -3004,7 +3004,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a56e77fa3377a0e4b92df7f93aaabf12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: name
+  itemName: name 2
+  itemText: Lets test 2
   numbersOfItems: 1
 --- !u!212 &678072216
 SpriteRenderer:
@@ -3431,6 +3432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: name
+  itemText: Lets test
   numbersOfItems: 1
 --- !u!212 &761606834
 SpriteRenderer:

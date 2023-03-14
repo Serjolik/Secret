@@ -21,7 +21,7 @@ public class PlayerInventory
         UIInfo.UpdateMassives(itemNames(), itemTexts());
     }
 
-    public void AddItem(string name, int number, Sprite sprite)
+    public void AddItem(string name, string text, int number, Sprite sprite)
     {   // if we don't have an instance of the item
         foreach (var item in inventory)
         {
@@ -31,7 +31,7 @@ public class PlayerInventory
                 return;
             }
         }
-        inventory.Add(new Item(name, number, sprite));
+        inventory.Add(new Item(name, text, number, sprite));
     }
 
     public void RemoveItem(string name)
@@ -88,12 +88,12 @@ public class PlayerInventory
         return list;
     }
 
-    private List<string> itemTexts() //NEED EDIT
+    private List<string> itemTexts()
     {
         var list = new List<string>();
         foreach (Item item in inventory)
         {
-            list.Add(item.itemName);
+            list.Add(item.itemText);
         }
 
         return list;
