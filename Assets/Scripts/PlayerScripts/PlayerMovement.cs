@@ -7,6 +7,11 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float movespeed = 3f;
 
+    /// <summary>
+    /// Script in scene to add footsteps sound
+    /// </summary>
+    [SerializeField] private SoundClips soundClips;
+
     private Rigidbody2D rb;
     private Animator animator;
 
@@ -37,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
         // Remembering the last direction for the id sprite of the character
         if (movement.x != 0 || movement.y != 0)
         {
+            soundClips.RunningSound(0); // play running sound
+
             animator.SetFloat("IdleHorizontal", movement.x);
             animator.SetFloat("IdleVertical", movement.y);
         }

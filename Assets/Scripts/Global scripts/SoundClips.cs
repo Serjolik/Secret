@@ -9,10 +9,13 @@ public class SoundClips : Singleton<SoundClips>
     [SerializeField] private AudioClip testClip;
     [SerializeField] private bool test;
 
+    public List<AudioClip> walkingSoundClips;
+    public List<AudioClip> runningSoundClips;
+
     protected override void Awake()
     {
         base.Awake();
-        _musicAudioSource = GetComponentInParent<AudioSource>();
+        _musicAudioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -28,4 +31,25 @@ public class SoundClips : Singleton<SoundClips>
     {
         _musicAudioSource.PlayOneShot(clip);
     }
+
+    public void WalkingSound(int soundIndex)
+    {
+        if (_musicAudioSource.isPlaying)
+        {
+            return;
+        }
+
+        _musicAudioSource.PlayOneShot(walkingSoundClips[soundIndex]);
+    }
+
+    public void RunningSound(int soundIndex)
+    {
+        if (_musicAudioSource.isPlaying)
+        {
+            return;
+        }
+
+        _musicAudioSource.PlayOneShot(runningSoundClips[soundIndex]);
+    }
+
 }
