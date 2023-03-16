@@ -39,25 +39,25 @@ public class CameraController : MonoBehaviour
         shakeTimer = myShakeTime;
     }
 
+    private IEnumerator Shake()
+    {
+        float time = 0;
+        ShakeCamera();
+        while (time < shakeTimer)
+        {
+            time += Time.deltaTime;
+
+            yield return null;
+        }
+        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
+    }
+
     private void Update()
     {
         if (shake)
         {
             shake = false;
-            ShakeCamera();
-        }
-
-        if (shakeTimer <= 0)
-        {
-            return;
-        }
-
-        shakeTimer -= Time.deltaTime;
-
-        if (shakeTimer <= 0f)
-        {
-            //TIME IS OVER
-            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
+            StartCoroutine(Shake());
         }
     }
 

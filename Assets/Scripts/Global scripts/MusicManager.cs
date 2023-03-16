@@ -16,9 +16,7 @@ public class MusicManager : Singleton<MusicManager>
 
     protected override void Awake()
     {
-        // base singleton class awake
         base.Awake();
-
         _musicAudioSource = gameObject.GetComponentInParent<AudioSource>();
     }
     void Start()
