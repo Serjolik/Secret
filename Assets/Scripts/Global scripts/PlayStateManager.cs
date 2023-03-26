@@ -50,6 +50,18 @@ public class PlayStateManager : MonoBehaviour
         Debug.Log("Settings");
     }
 
+    public void Cutscene()
+    {
+        ChangeState(GameState.Cutscene);
+        Debug.Log("Cutscene");
+    }
+
+    public void Dialog()
+    {
+        ChangeState(GameState.Cutscene);
+        Debug.Log("Dialog");
+    }
+
     public void GameOver()
     {
         ChangeState(GameState.GameOver);
