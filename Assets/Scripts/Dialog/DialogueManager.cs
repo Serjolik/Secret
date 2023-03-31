@@ -34,6 +34,8 @@ public class DialogueManager : MonoBehaviour
     private static DialogueManager instance;
 
     private const string SPEAKER_TAG = "speaker";
+    private const string EMOTION_TAG = "emote";
+    private const string TYPE_TEXT_TAG = "text_type";
 
     private void Awake() 
     {
