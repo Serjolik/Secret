@@ -1,7 +1,6 @@
-using Ink.Runtime;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MapController : Singleton<MapController>
 {
@@ -36,24 +35,29 @@ public class MapController : Singleton<MapController>
 
         grid = new Grid(mapSizeX, mapSizeY);
 
-        foreach(GameObject obj in objectsInMinigame)
+    }
+
+    private void Update()
+    {
+        if (points == 0)
         {
-            var position = new Vector2();
-
-            // Ставим корректное положение объектов в сетке
-            position.x = Mathf.Round(obj.transform.position.x / cellSize);
-            position.y = Mathf.Round(obj.transform.position.y / cellSize);
-
-            obj.transform.position = position * cellSize;
-
-            // Конвертируем значения в элементы матрицы
-            position.x += mapSizeX / 2;
-            position.y += mapSizeY / 2;
-
-            var objScript = obj.GetComponent<ObjectsInPuzzle>();
-            objScript.SetPosition(position);
+            EndGame();
         }
+    }
 
+    public (int, int) toArrayIdConverter(Vector2 value)
+    {
+        (int, int) newValue;
+
+        value.x = Mathf.Round(value.x / cellSize);
+        value.y = Mathf.Round(value.y / cellSize);
+
+        value.x += mapSizeX / 2;
+        value.y += mapSizeY / 2;
+
+        newValue = ((int)value.x, (int)value.y);
+
+        return newValue;
     }
 
     public (int, int) GetMapSize()
@@ -61,34 +65,58 @@ public class MapController : Singleton<MapController>
         return (mapSizeX, mapSizeY);
     }
 
-    public void MoveObject(Transform objTransform, Vector2 oldPosition, Vector2 moveDirection)
+    public void MoveObject(ObjectsInPuzzle obj, Vector2 oldPositionVector, (int, int) moveDirection)
     {
-        var x = (int)oldPosition.x;
-        var y = (int)oldPosition.y;
-        var newX = (int)(oldPosition.x + moveDirection.x);
-        var newY = (int)(oldPosition.y + moveDirection.y);
+        var oldPosition = toArrayIdConverter(oldPositionVector);
+
+        var x = oldPosition.Item1;
+        var y = oldPosition.Item2;
+        var newX = oldPosition.Item1 + moveDirection.Item1;
+        var newY = oldPosition.Item2 + moveDirection.Item2;
 
         grid.moveObject(x, y, newX, newY);
 
-        objTransform.position += new Vector3(moveDirection.x * cellSize, moveDirection.y * cellSize);
-
-        Debug.Log("POSITIONS");
-        Debug.Log(oldPosition);
-        Debug.Log(oldPosition + moveDirection);
     }
 
-    public bool ObtacleChecker(Vector2 position)
+    public int ObstacleChecker(Vector2 position)
     {
-        if (grid.checkValue((int)position.x, (int)position.y) != 0)
-        {
-            return true;
-        }
-        return false;
+        var pos = toArrayIdConverter(position);
+        return grid.checkValue(pos.Item1, pos.Item2);
+    }
+
+    public int ObstacleChecker(int x, int y)
+    {
+        return grid.checkValueForPlayer(x, y);
+    }
+
+    public void InitializePlayer(Vector2 playerPosition)
+    {
+        var position = toArrayIdConverter(playerPosition);
+        grid.SetPlayer(position);
+        Debug.Log(position);
+        Debug.Log(playerPosition);
+    }
+
+    public void MovePlayer(Vector2 position)
+    {
+        grid.movePlayer(((int)position.x, (int)position.y));
     }
 
     public float GetCellSize()
     {
         return (cellSize);
+    }
+
+    public void ObjectWasPlaced(Transform tr)
+    {
+        tr.gameObject.SetActive(false);
+        points -= 1;
+        Debug.Log("POINT");
+    }
+
+    private void EndGame()
+    {
+        SceneManager.LoadScene("GameScene");
     }
 
 }

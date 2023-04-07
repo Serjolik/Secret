@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PuzzlePlayerController : MonoBehaviour
@@ -22,13 +21,17 @@ public class PuzzlePlayerController : MonoBehaviour
         canMove = true;
 
         mapController = GetComponentInParent<MapController>();
+
         if (mapController == null)
         {
             Debug.LogWarning("CANT REACH MAP CONTROLLER");
             return;
         }
+
         mapSize = mapController.GetMapSize();
         moveRange = mapController.GetCellSize();
+
+        mapController.InitializePlayer(new Vector2(transform.position.x, transform.position.y));
     }
 
     private void Update()
@@ -37,17 +40,22 @@ public class PuzzlePlayerController : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
         movement.Normalize();
 
-        if (movement.x == 0 && movement.y == 0)
-        {
-            return;
-        }
-
         if (!canMove)
         {
             return;
         }
 
-        Move();
+        if (movement.x == 0 && movement.y == 0)
+        {
+            return;
+        }
+
+        if (movement.x != 0 && movement.y != 0)
+        {
+            return;
+        }
+
+        TryToMove();
         StartCoroutine(movingDelay());
     }
 
@@ -63,8 +71,30 @@ public class PuzzlePlayerController : MonoBehaviour
         canMove = true;
     }
 
+    private void TryToMove()
+    {
+        int objectID = mapController.ObstacleChecker((int)movement.x, (int)movement.y);
+        int nextObjectID;
+
+        if (objectID == 10)
+        {
+            return;
+        }
+
+        if (objectID == 1)
+        {
+            nextObjectID = mapController.ObstacleChecker((int)movement.x * 2, (int)movement.y * 2);
+
+            if (nextObjectID == 1 || nextObjectID == 10)
+                return;
+        }
+
+        Move();
+    }
+
     private void Move()
     {
+        mapController.MovePlayer(movement);
         gameObject.transform.position += new Vector3(movement.x * moveRange, movement.y * moveRange);
     }
 

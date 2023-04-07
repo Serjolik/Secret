@@ -8,14 +8,9 @@ public class ObjectsInPuzzle : MonoBehaviour
     private MapController mapController;
 
     private Vector2 position;
-    private Vector2 moveDirection;
-
-    private bool canMove =>
-        !mapController.ObtacleChecker(position + moveDirection);
 
     private void Start()
     {
-        // ѕолучаем глобальные значени€ карты и клеток
         mapController = GetComponentInParent<MapController>();
         if (mapController == null)
         {
@@ -23,11 +18,48 @@ public class ObjectsInPuzzle : MonoBehaviour
             return;
         }
 
+        transform.position = VectorConverting(transform.position, mapController.GetCellSize());
+
+        position = transform.position;
+        Move((0, 0));
     }
 
-    public void SetPosition(Vector2 position)
+    public Vector3 VectorConverting(Vector3 vector, float value)
     {
-        this.position = position;
+        return new Vector3(
+            Mathf.Round(vector.x / value) * value,
+            Mathf.Round(vector.y / value) * value,
+            vector.z
+            );
+    }
+
+    private bool canMove(Vector2 moveDirection)
+    {
+        if (mapController.ObstacleChecker(position + moveDirection) == 10)
+        {
+            Debug.Log("map border");
+            return false;
+        }
+
+        if (mapController.ObstacleChecker(position + moveDirection) == 1)
+        {
+            Debug.Log("another object");
+            return false;
+        }
+
+        return true;
+    }
+
+    public void Move((int, int) value)
+    {
+        mapController.MoveObject(this, position, value);
+
+        position.x += value.Item1;
+        position.y += value.Item2;
+
+        var step = new Vector3(value.Item1 * mapController.GetCellSize(), value.Item2 * mapController.GetCellSize());
+        transform.position += step;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -48,19 +80,10 @@ public class ObjectsInPuzzle : MonoBehaviour
 
     private void TryToMove(Vector2 moveDirection)
     {
-        Debug.Log(position + moveDirection);
-        this.moveDirection = moveDirection;
-        if (canMove)
+        if (canMove(moveDirection))
         {
-            Move(moveDirection);
+            Move(((int)moveDirection.x, (int)moveDirection.y));
         }
-    }
-
-    private void Move(Vector2 moveDirection)
-    {
-        mapController.MoveObject(transform, position, moveDirection);
-
-        position += moveDirection;
     }
 
 }

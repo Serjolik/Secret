@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class Grid
 {
-    private int width;
-    private int height;
+    public int width { get; private set; }
+    public int height { get; private set; }
+
+    private (int, int) player;
 
     enum keys
     {
         None = 0,
         Object = 1,
         Target = 2,
-        Player = 3,
-        Border = 4
+        Border = 10
     };
 
     private keys[,] gridArray;
@@ -40,18 +38,29 @@ public class Grid
     public void moveObject(int x, int y, int newX, int newY)
     {
         gridArray[x, y] = keys.None;
-        gridArray[x, y] = keys.Object;
+        gridArray[newX, newY] = keys.Object;
     }
 
-    public void movePlayer(int x, int y, int newX, int newY)
+    public void movePlayer((int, int) newPosition)
     {
-        gridArray[x, y] = keys.None;
-        gridArray[newX, newY] = keys.Player;
+        player.Item1 += newPosition.Item1;
+        player.Item2 += newPosition.Item2;
     }
+
+    public void SetPlayer((int, int) position)
+    {
+        player = position;
+    }
+
 
     public int checkValue(int x, int y)
     {
         return (int)gridArray[x, y];
+    }
+
+    public int checkValueForPlayer(int x, int y)
+    {
+        return (int)gridArray[player.Item1 + x, player.Item2 + y];
     }
 
 }

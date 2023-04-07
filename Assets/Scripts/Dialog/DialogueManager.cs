@@ -55,6 +55,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
+        HideChoices();
 
         // get all of the choices text 
         choicesText = new TextMeshProUGUI[choices.Length];
