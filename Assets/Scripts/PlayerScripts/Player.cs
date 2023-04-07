@@ -56,4 +56,27 @@ public class Player : MonoBehaviour
         playerActive = false;
         endGameEvent.TriggerEvent();
     }
+
+    public (string, string) GetItems()
+    {
+        var items = playerInventory.GetItems();
+        string itemsNames = "";
+        string itemsNumbers = "";
+
+        foreach (var item in items)
+        {
+            itemsNames += item.itemName + ", ";
+            itemsNumbers += item.totalItems + ", ";
+        }
+
+        if (itemsNames != "")
+        {
+            return(
+                itemsNames.Substring(0, itemsNames.Length - 2),
+                itemsNumbers.Substring(0, itemsNumbers.Length - 2)
+                );
+        }
+
+        return (itemsNames, itemsNumbers);
+    }
 }

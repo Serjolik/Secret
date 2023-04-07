@@ -99,4 +99,9 @@ public class PlayerInventory
         return list;
     }
 
+    public List<Item> GetItems()
+    {
+        return inventory;
+    }
+
 }

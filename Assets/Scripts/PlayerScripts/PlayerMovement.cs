@@ -63,4 +63,10 @@ public class PlayerMovement : MonoBehaviour
     {
         CanMove = state;
     }
+
+    public (float, float) GetPosition()
+    {
+        var pos = gameObject.transform.position;
+        return (pos.x, pos.y);
+    }
 }

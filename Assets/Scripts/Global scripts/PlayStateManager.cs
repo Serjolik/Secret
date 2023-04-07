@@ -12,6 +12,8 @@ public class PlayStateManager : MonoBehaviour
         GameOver
     };
 
+    private GameState currentState;
+
     private void Awake()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
@@ -23,15 +25,19 @@ public class PlayStateManager : MonoBehaviour
         {
             case GameState.Play:
                 playerMovement.CanMoveChanging(true);
+                currentState = GameState.Play;
                 break;
             case GameState.Cutscene:
                 playerMovement.CanMoveChanging(false);
+                currentState = GameState.Cutscene;
                 break;
             case GameState.Settings:
                 playerMovement.CanMoveChanging(false);
+                currentState = GameState.Settings;
                 break;
             case GameState.GameOver:
                 playerMovement.CanMoveChanging(false);
+                currentState = GameState.GameOver;
                 break;
         }
     }
@@ -64,6 +70,16 @@ public class PlayStateManager : MonoBehaviour
     {
         ChangeState(GameState.GameOver);
         Debug.Log("GameOver");
+    }
+
+    public bool isFree()
+    {
+        if (currentState == GameState.Play)
+        {
+            return true;
+        }
+
+        return false;
     }
 
 }
