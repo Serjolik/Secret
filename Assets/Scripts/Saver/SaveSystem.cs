@@ -9,6 +9,7 @@ public class SaveSystem : MonoBehaviour
     [SerializeField] private string progressKeys;
 
     private string pathName = "/Saves/";
+    private string saveName = "Save_";
     private string extension = ".rep";
 
     private void Awake()
@@ -19,26 +20,46 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    public void SaveGame(string saveName)
+    public bool CheckSave(int number)
+    {
+        string path = Application.persistentDataPath + pathName;
+
+        if (!Directory.Exists(path))
+        {
+            Debug.Log("Directory deleted in game time");
+            Directory.CreateDirectory(path);
+        }
+
+        path += saveName + number + extension;
+
+        if (File.Exists(path))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void SaveGame(int number)
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = Application.persistentDataPath + pathName + saveName + extension;
+        string path = Application.persistentDataPath + pathName + saveName + number + extension;
 
         Debug.Log(path);
 
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        Save save = new Save(saveName, playerMovement.GetPosition(), player.GetItems(), progressKeys);
+        Save save = new Save(saveName + number, playerMovement.GetPosition(), player.GetItems(), progressKeys);
 
         formatter.Serialize(stream, save);
         stream.Close();
 
     }
 
-    public Save LoadSave(string saveName)
+    public Save LoadSave(int number)
     {
-        string path = Application.persistentDataPath + pathName + saveName + extension;
+        string path = Application.persistentDataPath + pathName + saveName + number + extension;
 
         if (File.Exists(path))
         {

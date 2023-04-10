@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -16,6 +14,11 @@ public class Save
         this.position = position;
         this.items = items;
         this.keys = keys;
+    }
+
+    public string getName()
+    {
+        return saveName;
     }
 
     public void SaveDebug()
