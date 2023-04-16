@@ -36,13 +36,11 @@ public class TriggeredByPlayerObject : MonoBehaviour
         if (!inRange)
             return;
 
-        if (!Input.GetKeyDown(KeyCode.E))
+        if (stateManager.inPause())
             return;
 
-        if (!stateManager.isFree())
-            return;
-
-        Trigger();
+        if (Input.GetKeyDown(KeyCode.E))
+            Trigger();
     }
 
     protected virtual void Trigger()

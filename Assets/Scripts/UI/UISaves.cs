@@ -11,6 +11,7 @@ public class UISaves : MonoBehaviour
     [Header("Events")]
     [SerializeField] private GameEvent pauseEvent;
     [SerializeField] private GameEvent resumeEvent;
+    [SerializeField] private GameEvent SuccessEvent;
     private SaveSystem saveSystem;
 
     public bool opened { get; private set; }
@@ -91,6 +92,7 @@ public class UISaves : MonoBehaviour
 
     public void WriteSave(int buttonId)
     {
+        SuccessEvent.TriggerEvent();
         saveSystem.SaveGame(buttonId);
     }
 }

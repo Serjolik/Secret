@@ -8,6 +8,7 @@ public class PlayStateManager : MonoBehaviour
     {
         Play,
         Cutscene,
+        Interact,
         Settings,
         GameOver
     };
@@ -30,6 +31,10 @@ public class PlayStateManager : MonoBehaviour
             case GameState.Cutscene:
                 playerMovement.CanMoveChanging(false);
                 currentState = GameState.Cutscene;
+                break;
+            case GameState.Interact:
+                playerMovement.CanMoveChanging(false);
+                currentState = GameState.Interact;
                 break;
             case GameState.Settings:
                 playerMovement.CanMoveChanging(false);
@@ -54,6 +59,12 @@ public class PlayStateManager : MonoBehaviour
         Debug.Log("Settings");
     }
 
+    public void Interact()
+    {
+        ChangeState(GameState.Interact);
+        Debug.Log("Interact");
+    }
+
     public void Cutscene()
     {
         ChangeState(GameState.Cutscene);
@@ -75,6 +86,16 @@ public class PlayStateManager : MonoBehaviour
     public bool isFree()
     {
         if (currentState == GameState.Play)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool inPause()
+    {
+        if (currentState == GameState.Settings)
         {
             return true;
         }

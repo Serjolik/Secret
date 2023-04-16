@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!CanMove)
         {
+            animator.SetFloat("Speed", 0);
             return;
         }
 
